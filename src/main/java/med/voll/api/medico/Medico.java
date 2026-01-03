@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.endereco.Endereco;
+import med.voll.api.enums.Especialidade;
 
 @Entity
 @Table(name = "medicos")
@@ -45,6 +46,18 @@ public class Medico {
     @Valid
     private Endereco endereco;
 
+    private boolean status;
+
+    public Medico(DadosMedicos dadosMedicos) {
+        this.nome = dadosMedicos.nome();
+        this.email = dadosMedicos.email();
+        this.telefone = dadosMedicos.telefone();
+        this.crm = dadosMedicos.crm();
+        this.especialidade = dadosMedicos.especialidade();
+        this.endereco = dadosMedicos.endereco();
+        this.status = dadosMedicos.status();
+    }
+
     public void ataulizarInformacoes(AtualizarMedico medicoDados) {
         if(medicoDados.getNome() != null){
             this.nome = medicoDados.getNome();
@@ -61,5 +74,9 @@ public class Medico {
         if (medicoDados.getEndereco() != null){
             this.endereco.atualizarInformacoesEndereco(medicoDados.getEndereco());
         }
+    }
+
+    public void excluir() {
+        this.status = false;
     }
 }

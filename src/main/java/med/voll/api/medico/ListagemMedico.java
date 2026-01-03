@@ -1,5 +1,7 @@
 package med.voll.api.medico;
 
+import med.voll.api.enums.Especialidade;
+
 public class ListagemMedico{
 
     private Long id ;
@@ -17,4 +19,23 @@ public class ListagemMedico{
         this.especialidade = medico.getEspecialidade();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCrm() {
+        return crm;
+    }
+
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
 }
