@@ -2,7 +2,7 @@ package med.voll.api.controller;
 
 import jakarta.validation.Valid;
 import med.voll.api.medico.*;
-import org.apache.coyote.Response;
+import med.voll.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +36,13 @@ public class MedicoController {
         var page = medicoRepository.findAllByStatusTrue(paginacao).map(ListagemMedico::new);
         return ResponseEntity.ok(page);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity listaMedicoPorId(@PathVariable Long id){
+        var medico = medicoRepository.findById(id);
+        return ResponseEntity.ok(medico);
+    }
+
 
     @PutMapping
     @Transactional
